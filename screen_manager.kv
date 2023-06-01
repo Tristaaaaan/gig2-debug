@@ -1,0 +1,48 @@
+#This file contains the implementation of the screenmanager of the application.
+#New screens should be added here and new kv files should be imported here.
+
+#:include custom_main.kv
+#:include customwidgets.kv
+#:include menu.kv
+#:include custom_coordonnate.kv
+#:include custom_distance.kv
+#:include cheng.kv
+#:include step1.kv
+#:include step2.kv
+#:include login.kv
+
+
+ScreenManager:
+    LoginPage:
+    Screen:
+        name: 'Accueil'
+        MainWidget:
+    Screen:
+        name: 'menu'
+        Menu_Widget:
+    Screen:
+        name: 'coordonnate'
+        CoordonneeWidget:
+    Screen:
+        name: 'distance'
+        DistanceWidget:
+    Screen:
+        name: 'cheng'
+        MainScreen:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

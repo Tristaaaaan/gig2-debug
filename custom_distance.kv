@@ -1,0 +1,224 @@
+<DistanceWidget>:
+    orientation: 'vertical'
+
+    ToolBarSpace:
+        MDTopAppBar:
+            id: toolbar
+            elevation: 0
+            title: 'Calcul de Distance'
+            left_action_items: [["arrow-left", lambda x: app.go_to_previous(root)]]
+            right_action_items: [["dots-vertical", lambda x: root.show_options()]]
+
+    MDBoxLayout:
+        padding: 20
+        spacing: 10
+        orientation: 'vertical'
+        MDBoxLayout:
+            # padding: 20
+            size_hint_y: .2
+            MDBoxLayout:
+                Label:
+                    text: "Degree"
+                    halign: 'right'
+                    color: 0,0,0,1
+                CheckBox:
+                    id: degree_checkbox
+                    group: "radio_buttons"
+                    size_hint_x: .2
+                    on_active: root.check_A_B_value()
+            MDBoxLayout:
+                CheckBox:
+                    id: mil_checkbox
+                    group: "radio_buttons"
+                    size_hint_x: .2
+                    active: True
+                    on_active: root.check_A_B_value()
+
+                Label:
+                    text: "Mil"
+                    halign: 'left'
+                    color: 0,0,0,1
+
+        MDBoxLayout:
+            adaptive_height: True
+            GridLayout:
+                cols: 3
+                spacing: 5
+                MDBoxLayout:
+                    adaptive_height: True
+                    Label:
+                        text: 'Dab ='
+                        # font_size: 25
+                        size_hint_x: .3
+                        color: 0,0,0,1
+
+                    DataInput:
+                        id: Dab
+                        input_filter: "float"
+                        # font_size: 17
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    Label:
+                        text: 'A ='
+                        # font_size: 25
+                        size_hint_x: .3
+                        color: 0,0,0,1
+
+                    DataInput:
+                        id: A
+                        input_filter: "float"
+                        # font_size: 17
+                        on_text: root.limit_data_input_range(self)
+
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    Label:
+                        text: 'B ='
+                        # font_size: 25
+                        size_hint_x: .3
+                        color: 0,0,0,1
+
+                    DataInput:
+                        id: B
+                        input_filter: "float"
+                        # font_size: 17
+                        on_text: root.limit_data_input_range(self)
+
+
+        MDBoxLayout:
+            spacing: 15
+            # adaptive_width: True
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint_y: .1
+            RectangularElevationButton:
+                id: effacer
+                md_bg_color: (188/255,0,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                # size_hint_x: .3
+                # size_hint_y: .2
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    pos: effacer.pos
+                    size: effacer.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "View More"
+                    color: 0,0,0,1
+                    # on_release: root.view_more()
+
+            RectangularElevationButton:
+                id: validation
+                md_bg_color: (0,188/255,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                # size_hint_x: .3
+                # size_hint_y: .2
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: validation.pos
+                    size: validation.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "Valider"
+                    on_release: root.validate('+')
+
+            RectangularElevationButton:
+                id: retour
+                md_bg_color: (0,0,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                # size_hint_x: .3
+                # size_hint_y: .2
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: retour.pos
+                    size: retour.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "Retour"
+                    on_release: root.return_to_home()
+
+            # MDFillRoundFlatButton:
+            #     font_size: 20
+            #     text: "Valider"
+            #     md_bg_color: (0,188/255,0,1)
+            #     on_release: root.validate('+')
+
+            # MDFillRoundFlatButton:
+            #     font_size: 20
+            #     text: "Retour"
+            #     # md_bg_color: (0,0,0,1)
+            #     source: 'assets/button.png'
+            #     allow_stretch: True
+            #     on_release: root.return_to_home()
+
+        GridLayout:
+            cols: 2
+            MDBoxLayout:
+                
+                Label:
+                    text: 'Dac ='
+                    # font_size: 25
+                    size_hint_x: .3
+                    color: 0,0,1,1
+                    bold: True
+
+                Label:
+                    id: result_Dac
+                    text: ""
+                    input_filter: "float"
+                    # font_size: 17
+                    color: 0,0,1,1
+                    bold: True
+
+            MDBoxLayout:
+                Label:
+                    text: 'Dbc ='
+                    # font_size: 25
+                    size_hint_x: .3
+                    color: 0,0,1,1
+                    bold: True
+
+                Label:
+                    id: result_Dbc
+                    text: ""
+                    input_filter: "float"
+                    # font_size: 17
+                    color: 0,0,1,1
+                    bold: True
+

@@ -1,0 +1,49 @@
+<LoginPage>:
+    name: 'LoginPage'
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'button_background.png'
+
+        Label:
+            text: "Welcome"
+            color: 0,0,0,1
+   
+        MDBoxLayout:
+            orientation: 'vertical'
+            DataInput:
+                id: user_password
+                hint_text: 'Insert your password'
+                halign: 'center'
+                password: True
+                text: ''
+
+            Label:
+                id: error_label
+                color: 1,0,0,1
+
+            RectangularElevationButton:
+                pos_hint: {'center_x':.5, 'center_y':.5}
+                id: retour
+                md_bg_color: (0,0,0,1)
+                size_hint_x: .3
+                size_hint_y: .2
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    color: 0,0,0,1
+                    pos: retour.pos
+                    size: retour.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "LOGIN"
+                    on_release: root.login(user_password.text)

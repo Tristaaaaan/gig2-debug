@@ -1,0 +1,146 @@
+<Step1Form>:
+    orientation: "vertical"
+    BoxLayout:
+        padding: 20
+        spacing: 2
+        orientation: 'vertical'
+        GridLayout:
+            cols: 3
+            spacing: 5
+            BoxLayout:
+                adaptive_height: True
+                pos_hint: {'center_x': .2, 'center_y': .2}
+                Label:
+                    text: "pD"
+                    size_hint_x: .3
+                    color: 0,0,0,1
+                TextInput:
+                    id: pD
+                    text: str(root.pD)
+                    input_filter: "float"
+                    size_hint_x: 0.5
+                    size_hint_y: 0.2
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_text: root.pD = float(self.text)
+                    background_active: ''
+                    background_normal: ''
+                    background_color: (1,1,1,1)
+                    foreground_color: 0,0,0,1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas.after:
+                        Color:
+                            rgba: (0,0,0,1)
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+
+            BoxLayout:
+                adaptive_height: True
+                Label:
+                    text: "pF"
+                    size_hint_x: .3
+                    color: 0,0,0,1
+                TextInput:
+                    id: pF
+                    text: str(root.pF)
+                    input_filter: "float"
+                    size_hint_x: 0.6
+                    size_hint_y: 0.2
+                    pos_hint: {'center_x': .9, 'center_y': .5}
+                    on_text: root.pF = float(self.text)
+                    background_active: ''
+                    background_normal: ''
+                    background_color: (1,1,1,1)
+                    foreground_color: 0,0,0,1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas.after:
+                        Color:
+                            rgba: (0,0,0,1)
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+            BoxLayout:
+                adaptive_height: True
+                Label:
+                    text: "pG"
+                    size_hint_x: .3
+                    color: 0,0,0,1
+                TextInput:
+                    id: pG
+                    text: str(root.pG)
+                    input_filter: "float"
+                    size_hint_x: 0.6
+                    size_hint_y: 0.2
+                    pos_hint: {'center_x': .9, 'center_y': .5}
+                    on_text: root.pG = float(self.text)
+                    background_active: ''
+                    background_normal: ''
+                    background_color: (1,1,1,1)
+                    foreground_color: 0,0,0,1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas.after:
+                        Color:
+                            rgba: (0,0,0,1)
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: 1
+            #adaptive_width: True
+            #size_hint_x: 0.8
+            #size_hint_y: 0.5
+            pos_hint: {'x': 0, 'y': .9}
+            RectangularElevationButton:
+                id: validation
+                # md_bg_color: (0,188/255,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                # size_hint_x: .9
+                # size_hint_y: .2
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x,self.y,self.width,self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: validation.pos
+                    size: validation.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "Calculate"
+                    on_release: root.calculate_step1()
+        BoxLayout:
+            BoxLayout:
+                Label:
+                    text: "BCrk ="
+                    size_hint_x: .3
+                    color: 0,0,0,1
+                    bold: True
+                Label:
+                    id: result_BCrk
+                    text: ""
+                    color: 0,0,0,1
+                    bold: True
+
+            BoxLayout:
+                Label:
+                    text: "Frk ="
+                    size_hint_x: .3
+                    color: 0,0,0,1
+                    bold: True
+                Label:
+                    id: result_Frk
+                    text: ""
+                    color: 0,0,0,1
+                    bold: True

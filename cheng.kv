@@ -1,0 +1,105 @@
+<MainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        ToolBarSpace:
+            MDTopAppBar:
+                id: toolbar
+                elevation: 0
+                title: 'Cheng'
+                left_action_items: [["arrow-left", lambda x: app.go_to_previous(root)]]
+                right_action_items: [["dots-vertical", lambda x: root.show_options()]]
+
+        ScreenManager:
+            id: screen_manager
+
+            Screen:
+                name: "step1"
+                Step1Form:
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: ''
+            Screen:
+                name: "step2"
+                Step2Form:
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: ''
+
+
+        BoxLayout:
+            size_hint_y: None
+            #height: dp(56)
+            padding: dp(8)
+            spacing: dp(8)
+            adaptive_height: True
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1  # Set the color of the navigation bar
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            # Button:
+            #     text: 'step1'
+            #     on_release: 
+            #         root.switch_view('step1')
+            #         root.clear_fields()
+            #     background_color: (0,188/255,0,1) if screen_manager.current == 'step1' else (0.2, 0.2, 0.2, 1)
+            
+            # Button:
+            #     text: 'step2'
+            #     on_release: 
+            #         root.switch_view('step2')
+            #         root.clear_fields()
+            #     background_color: (0,188/255,0,1) if screen_manager.current == 'step2' else (0.2, 0.2, 0.2, 1)
+            
+            RectangularElevationButton:
+                pos_hint: {'center_x':.5, 'center_y':.5}
+                id: step1button
+                md_bg_color: (0,0,0,1)
+                # size_hint_x: .3
+                # size_hint_y: .2
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    color: 0,0,0,1
+                    pos: step1button.pos
+                    size: step1button.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "Step1"
+                    on_release: 
+                        root.switch_view('step1')
+                        root.clear_fields()
+
+
+            RectangularElevationButton:
+                pos_hint: {'center_x':.5, 'center_y':.5}
+                id: step2button
+                md_bg_color: (0,0,0,1)
+                # size_hint_x: .3
+                # size_hint_y: .2
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    color: 0,0,0,1
+                    pos: step2button.pos
+                    size: step2button.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "Step2"
+                    on_release: 
+                        root.switch_view('step2')
+                        root.clear_fields()
+
