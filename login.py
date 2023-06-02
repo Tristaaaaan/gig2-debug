@@ -17,23 +17,21 @@ class RectangularElevationButton(
     pass
 
 class LoginPage(Screen):
-
+    
 
     def login(self,password):
-        app = MDApp.get_running_app()
-        with open('password_storage.txt', 'r') as pwd_storage:
-            pwd = tuple(pwd_storage.readline().split(','))
-            if self.check_password(pwd[0],password):
-                app.root.current = 'Accueil'
-            else:
-                self.ids.error_label.text = 'Incorrect password'
-                self.ids.user_password.text = ''
+        if self.check_password(password):
+            app = MDApp.get_running_app()
+            app.root.current = 'Accueil'
+        else:
+            self.ids.error_label.text = 'Incorrect password'
+            self.ids.user_password.text = ''
 
-    def check_password(self,pwd,password):
+    def check_password(self,password):
         # the method will return True if the password is correcte, False otherwise
+        with open('password_storage.txt', 'r') as pwd_storage:
+            pwd = pwd_storage.readline()
             if password == pwd:
-                with open('password_storage.txt', 'w') as pwd_storage:
-                    pwd_storage.write(f'{pwd},1')
-                    return True
+                return True
             else:
                 return False

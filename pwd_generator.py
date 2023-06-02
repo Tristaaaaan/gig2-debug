@@ -9,4 +9,4 @@ def generate_password(length=8):
 # Usage example: Generate a password of length 10
 with open('password_storage.txt','w') as pwd_storage:
     password = generate_password(10)
-    pwd_storage.write(f'{password},0')
+    pwd_storage.write(password)

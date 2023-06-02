@@ -24,7 +24,6 @@ from step2 import Step2Form
 Window.clearcolor = 1, 1, 1, 1  # setting the window color
 Window.size = (500, 700)  # setting the initial size of the window
 
-
 class RectangularElevationButton(
     ButtonBehavior,
     RectangularRippleBehavior,
@@ -50,6 +49,7 @@ class OptionsDropdown(DropDown):
     '''
     pass
 
+    
 
 class MainWidget(Widget):
     '''
@@ -64,8 +64,8 @@ class MainWidget(Widget):
         app = MDApp.get_running_app()
         app.root.current = 'menu'
 
-    # Showing dropdown menu of the toolbar
 
+    # Showing dropdown menu of the toolbar
     def show_options(self):
         main_item = {"text": "Accueil",
                      "viewclass": "OneLineListItem",
@@ -93,8 +93,7 @@ class MainWidget(Widget):
                      "on_release": lambda x="Quitter": self.button_callback(x),
                      }
 
-        menu_items = [main_item, settings_item,
-                      history_item, logout_item, exit_item]
+        menu_items = [main_item, settings_item, history_item, logout_item, exit_item]
         self.menu = MDDropdownMenu(
             caller=self.ids.toolbar,
             items=menu_items,
@@ -113,10 +112,9 @@ class MainWidget(Widget):
         print(text_item)
         self.menu.dismiss()
 
-    # this method is required by the toolbar
+    #this method is required by the toolbar
     def clear_fields(self):
         pass
-
 
 class ArtiCalculatrice(MDApp):
 
@@ -126,16 +124,10 @@ class ArtiCalculatrice(MDApp):
         self.screens_manager = Builder.load_file('screen_manager.kv')
 
     def build(self):
-        with open('password_storage.txt', 'r') as pwd_storage:
-            pwd = tuple(pwd_storage.readline().split(','))
-            if pwd[1] == '1':
-                self.screens_manager.current = 'Accueil'
-            else:
-                self.screens_manager.current = 'LoginPage'
         return self.screens_manager
 
-    # Go to the previous screen
 
+    # Go to the previous screen
     def go_to_previous(self, root):
         root.clear_fields()
         if self.screens_manager.previous() != 'LoginPage':
@@ -147,3 +139,4 @@ class ArtiCalculatrice(MDApp):
 
 
 ArtiCalculatrice().run()
+
